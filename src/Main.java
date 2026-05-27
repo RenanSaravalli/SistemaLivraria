@@ -5,6 +5,7 @@ import livro.Livro;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.UUID;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -116,11 +117,30 @@ public class Main {
                     break;
 
                 case 7:
+                    UUID codigoLivroEmprestimo;
+                    String nomeClienteEmprestimo;
                     System.out.println(">> Realizando Empréstimo...");
+                    System.out.println("Digite o código do livro para realizar empréstimo");
+                    scanner.nextLine();
+                    codigoLivroEmprestimo = UUID.fromString(scanner.nextLine());
+                    System.out.println("Digite o nome do cliente: ");
+                    scanner.nextLine();
+                    nomeClienteEmprestimo = scanner.nextLine();
+                    biblioteca.realizarEmprestimo(codigoLivroEmprestimo, nomeClienteEmprestimo);
                     break;
 
                 case 8:
+                    UUID codigoLivroDevolucao;
+                    String nomeClienteDevolucao;
                     System.out.println(">> Realizando devolução...");
+                    System.out.println(">> Realizando Empréstimo...");
+                    System.out.println("Digite o código do livro para realizar empréstimo");
+                    scanner.nextLine();
+                    codigoLivroDevolucao = UUID.fromString(scanner.nextLine());
+                    System.out.println("Digite o nome do cliente: ");
+                    scanner.nextLine();
+                    nomeClienteDevolucao = scanner.nextLine();
+                    biblioteca.devolverLivro(codigoLivroDevolucao, nomeClienteDevolucao);
                     break;
 
                 case 9:
