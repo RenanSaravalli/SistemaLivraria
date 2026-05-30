@@ -116,11 +116,14 @@ public class Biblioteca {
         List<Livro> filterLivrosPorGenero = livros.stream()
                 .filter(livro -> livro.getGenero().equalsIgnoreCase(genero))
                 .toList();
+        System.out.println(filterLivrosPorGenero);
     }
 
     public void listarLivrosPorDataCadastro(LocalDate data) {
         List<Livro> filterLivrosPorDataCadastro = livros.stream()
                 .filter(livro -> livro.getDataCadastro().isAfter(data) || livro.getDataCadastro().isEqual(data))
                 .toList();
+
+        System.out.println(filterLivrosPorDataCadastro);
     }
 }

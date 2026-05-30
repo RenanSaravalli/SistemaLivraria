@@ -14,9 +14,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int opcao;
+        Biblioteca biblioteca = new Biblioteca();
 
         do {
-            Biblioteca biblioteca = new Biblioteca();
 
             System.out.println("--- Sistema Livraria ---");
             System.out.println("[1]  - Cadastrar Livro");
@@ -54,30 +54,31 @@ public class Main {
                     dataCadastro = LocalDate.parse(scanner.next());
 
                     System.out.println("Nome do autor:");
-                    scanner.nextLine();
+
                     nomeAutor = scanner.nextLine();
 
-                    System.out.println("Data nascimento autor (AAA-MM-DD): ");
+                    System.out.println("Data nascimento autor (AAAA-MM-DD): ");
                     dataNascimentoAutor = LocalDate.parse(scanner.next());
 
                     Autor novoAutor = new Autor(nomeAutor, dataNascimentoAutor);
 
                     Livro novoLivro = new Livro(titulo, novoAutor, genero, dataCadastro);
                     biblioteca.cadastrarLivro(novoLivro);
+                    System.out.println("Livro Cadastrado");
                     break;
                 case 2:
                     String nomeCadastAutor;
                     LocalDate dataNascCadasAutor;
                     System.out.println(">> Cadastrando autor...");
                     System.out.println("Nome do autor:");
-                    scanner.nextLine();
+
                     nomeCadastAutor = scanner.nextLine();
 
-                    System.out.println("Data nascimento autor (AAA-MM-DD): ");
+                    System.out.println("Data nascimento autor (AAAA-MM-DD): ");
                     dataNascCadasAutor = LocalDate.parse(scanner.next());
 
                     biblioteca.cadastrarAutor(new Autor(nomeCadastAutor, dataNascCadasAutor));
-
+                    System.out.println("autor cadastrado");
                     break;
 
                 case 3:
@@ -85,14 +86,13 @@ public class Main {
                     String nomeCliente;
                     String emailCliente;
                     System.out.println("Nome cliente: ");
-                    scanner.nextLine();
                     nomeCliente = scanner.nextLine();
 
                     System.out.println("Email cliente: ");
-                    scanner.nextLine();
                     emailCliente = scanner.nextLine();
 
                     biblioteca.cadastrarCliente(new Cliente(nomeCliente, emailCliente));
+                    System.out.println("Cliente cadastrado");
                     break;
 
                 case 4:
@@ -104,7 +104,7 @@ public class Main {
                     String generoDeFiltro;
                     System.out.println(">> Listando Livros disponíveis por gênero...");
                     System.out.println("Digite o gênero que deseje listar: ");
-                    scanner.nextLine();
+
                     generoDeFiltro = scanner.nextLine();
                     biblioteca.listarLivrosPorGenero(generoDeFiltro);
                     break;
@@ -121,10 +121,10 @@ public class Main {
                     String nomeClienteEmprestimo;
                     System.out.println(">> Realizando Empréstimo...");
                     System.out.println("Digite o código do livro para realizar empréstimo");
-                    scanner.nextLine();
-                    codigoLivroEmprestimo = UUID.fromString(scanner.nextLine());
+
+                    codigoLivroEmprestimo = UUID.fromString(scanner.nextLine().trim());
                     System.out.println("Digite o nome do cliente: ");
-                    scanner.nextLine();
+
                     nomeClienteEmprestimo = scanner.nextLine();
                     biblioteca.realizarEmprestimo(codigoLivroEmprestimo, nomeClienteEmprestimo);
                     break;
@@ -138,17 +138,27 @@ public class Main {
                     scanner.nextLine();
                     codigoLivroDevolucao = UUID.fromString(scanner.nextLine());
                     System.out.println("Digite o nome do cliente: ");
-                    scanner.nextLine();
+
                     nomeClienteDevolucao = scanner.nextLine();
                     biblioteca.devolverLivro(codigoLivroDevolucao, nomeClienteDevolucao);
                     break;
 
                 case 9:
+                    String tituloLivroBusca;
                     System.out.println(">> Buscando livro por título...");
+                    System.out.println("Digite o titulo do livro: ");
+
+                    tituloLivroBusca = scanner.nextLine();
+                    System.out.println("Livro encontrado: " + biblioteca.buscarLivroPorTitulo(tituloLivroBusca));
                     break;
 
                 case 10:
+                    String nomeAutorBusca;
                     System.out.println(">> Buscando livro por autor...");
+                    System.out.println("Digite o nome do autor");
+
+                    nomeAutorBusca = scanner.nextLine();
+                    System.out.println("Livro encontrado: " + biblioteca.buscarLivroPorAutor(nomeAutorBusca));
                     break;
 
                 case 0:
